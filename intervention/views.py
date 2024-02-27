@@ -105,8 +105,17 @@ def mentor_view_mentee(request, MentorId):
         "mentorDetails": mentorDetails,
 
     }
-
     return render(request, 'mentorPage.html', obj)
+
+def editProfile(request,studentId):
+    if request.method == "POST":
+        student = Student.objects.get(studentId=studentId)
+
+        student.StudentAddress = request.POST["updateAddress"]
+        student.studentNo = request.POST["updatePhone"]
+
+        student.save()
+        return redirect('studentmainpage',studentId=studentId)
 
 def student_view_report(request,studentId):
 
@@ -139,6 +148,11 @@ def submitReport(request, studentId):
         addToReport = Report(reportId=report_id, reportType=report_type ,  reportProg=report, date=Date, studentId=stuid, mentorId=mentor )
         addToReport.save()
     return redirect('student',studentId=studentId)
+
+def deleteReport(request, MentorId,repoId):
+    sel_repo = Report.objects.get(reportId=repoId)
+    sel_repo.delete()
+    return redirect('mentormainpage',MentorId=MentorId)
 
 def mentorDisplay(request, MentorId):
     report = Report.objects.all().values()

@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.login_view, name='login'),
     path('student/<str:studentId>', views.student_view, name='student'),
     path('student/<str:studentId>', views.studentDisplay,name='studentmainpage'),
+    path('student/<str:studentId>/editProfile', views.editProfile,name='editProfile'),
     
     path('student/report/<str:studentId>', views.student_view_report, name='report'),
     path('student/report/submit/<str:studentId>', views.submitReport, name='submitReport'),
@@ -17,18 +18,18 @@ urlpatterns = [
     path('mentor/report/submit/<str:MentorId>', views.submitAppointment, name='submitAppointment'),
     path('admin/<str:adminId>', views.admin_view, name='admin'),
     path('admin/<str:adminId>/studentDetails', views.adminStudent_view, name='Studentadmin'),
+    
+    # admin delete report
+    path('admin/<str:MentorId>/<str:repoId>/deletereport', views.deleteReport, name='deleteReport'),
 
     # admin nak delete stuedent data
     path('admin/<str:adminId>/studentDetails/delete/<str:studID>', views.adminDeleteStudent, name='adminDeletestudent'),
     path('admin/<str:adminId>/studentDetails/update/<str:studID>', views.adminUpdateStudent, name='adminupdatestudent'),
 
     #admin nak delete data mentor
-    #admin nak delete data mentor
     path('admin/<str:adminId>/mentorDetails/delete/<str:mentorID>', views.adminDeleteMentor, name='adminDeletementor'),
     path('admin/<str:adminId>/mentorDetails/update/<str:mentorID>', views.adminUpdateMentor, name='adminUpdatementor'),
 
-
-    # path('admin/<str:adminId>/studentDetails/delete/<str:studID>', views.adminDeleteStudent, name='adminDeleteStudent'),
     # admin nak add stuedent data
     path('admin/<str:adminId>/studentDetails/add', views.addStudent, name='addStudent'),
     path('admin/<str:adminId>/studentDetails/add/submit', views.submitAddStudent, name='submitAddStudent'),
@@ -37,8 +38,5 @@ urlpatterns = [
     path('admin/<str:adminId>/mentorDetails/add/submit', views.submitAddmentor, name='submitAddMentor'),
     path("admin/<str:adminId>/searchmentor", views.searchMentor, name='searchMentor'),
     path("admin/<str:adminId>/searchstudent", views.searchStudent, name='searchStudent')
-
-
-    
     
 ]

@@ -67,6 +67,7 @@
                 <th scope="col">Report Type</th>
                 <th scope="col">Report </th>
                 <th scope="col">Date </th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -79,6 +80,9 @@
                     <td>{{report.reportType}}</td>
                     <td>{{report.reportProg}}</td>
                     <td>{{report.date}}</td>
+                    <td>
+                      <a class="btn btn-danger btn-sm" href="{% url 'deleteReport' mentorDetails.mentorId  report.reportId %}" role="button">Delete</a>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>
